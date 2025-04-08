@@ -12,11 +12,11 @@ spec:
   template:
     metadata:
       app: app1
-  spec:
-    containers:
-      - name: app1
-        image: kusumab/app1:1.0.0
-        ports: 
+    spec:
+      containers:
+        - name: app1
+          image: kusumab/app1:1.0.0
+          ports: 
           - containerPort: 80
 ---
 kind: Service
