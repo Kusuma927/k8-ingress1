@@ -33,7 +33,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: app1
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     # In Target group instances are IP based, hence our pod IP's will set there
