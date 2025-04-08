@@ -11,7 +11,8 @@ spec:
       app: app1
   template:
     metadata:
-      app: app1
+      labels:
+        app: app1
     spec:
       containers:
         - name: app1
@@ -20,7 +21,7 @@ spec:
           - containerPort: 80
 ---
 kind: Service
-apiVersion: v1
+apiversion: v1
 metadata:
   name: nginx
 spec:
