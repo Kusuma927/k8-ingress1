@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiversion: apps/v1
 kind: Deployment
 metadata:
   name: app1
@@ -15,10 +15,10 @@ spec:
         app: app1
     spec:
       containers:
-        - name: app1
-          image: kusumab/app1:1.0.0
-          ports: 
-          - containerPort: 80
+      - name: app1
+        image: kusumab/app1:1.0.0
+        ports: 
+        - containerPort: 80
 ---
 kind: Service
 apiversion: v1
