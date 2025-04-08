@@ -2,12 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app1
-  labels:
-    app: app1
 spec:
   replicas: 2
   selector:
-    matchlabels:
+    matchLabels:
       app: app1
   template:
     metadata:
@@ -17,19 +15,18 @@ spec:
       containers:
       - name: app1
         image: kusumab/app1:1.0.0
-        ports: 
+        ports:
         - containerPort: 80
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: nginx
 spec:
   selector:
-      app: app1
+     app: app1
   ports:
-   - protocols: TCP
-     port: 80
-     targetPort: 80
-
+  - protocol: TCP
+    port: 80
+    targetPort: 80
 
