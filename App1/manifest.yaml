@@ -21,7 +21,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: app1
 spec:
   selector:
      app: app1
@@ -29,4 +29,28 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 80
-
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    # In Target group instances are IP based, hence our pod IP's will set there
+    alb.ingress.kubernetes.io/target-type: ip 
+    alb.ingress.kubernetes.io/listen-ports: [{"HTTPS": 443}]
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:590184056608:certificate/11af1104-04c0-46cf-b74e-f73362d5aecc
+    alb.ingress.kubernetes.io/group.name: kusumab
+spec:
+  ingressClassName: alb
+  rules:
+  - host: "app1.devopsdaws82s.online"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
