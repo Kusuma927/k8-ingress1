@@ -3,15 +3,15 @@ kind: Deployment
 metadata:
   name: app1
   labels:
-    name: app1
+    app: app1
 spec:
   replicas: 2
   selector:
     matchlabels:
-      name: app1
+      app: app1
   template:
     metadata:
-      name: app1
+      app: app1
   spec:
     containers:
       - name: app1
@@ -19,13 +19,13 @@ spec:
         ports: 
           -containerPort: 80
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: nginx
 spec:
   selector:
-      name: app1
+      app: app1
   ports:
    - protocols: TCP
      port: 80
